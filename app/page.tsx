@@ -10,21 +10,23 @@ import FooterCTA from '@/components/landing/footer-cta'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <Navbar />
-      {/* Menambahkan wrapper div atau memastikan Hero 
-        punya padding-top yang cukup untuk mengimbangi Navbar fixed 
-      */}
-      <div className="relative">
-        <Hero />
-      </div>
+    <main className="min-h-screen bg-background text-foreground relative">
+      <Navbar /> {/* Tetap satu Navbar saja di sini */}
+
+      <Hero />
+
+      {/* PainSection akan menimpa Navbar secara otomatis karena z-index */}
       <PainSection />
-      <FeaturesSection />
-      <DemoSection />
-      <SocialProof />
-      <PricingSection />
-      <FAQSection />
-      <FooterCTA />
+
+      {/* Section setelahnya otomatis membuat Navbar muncul lagi */}
+      <div className="relative z-0">
+        <FeaturesSection />
+        <DemoSection />
+        <SocialProof />
+        <PricingSection />
+        <FAQSection />
+        <FooterCTA />
+      </div>
     </main>
   )
 }

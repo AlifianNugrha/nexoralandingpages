@@ -14,6 +14,12 @@ const jakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: 'Nexora - AI Chatbot & IT Solution',
   description: 'Ubah pengunjung menjadi pembeli otomatis dengan AI Chatbot cerdas.',
+  // Menambahkan konfigurasi icon dari folder public
+  icons: {
+    icon: '/favicon.ico', // Sesuaikan dengan nama file di folder public
+    shortcut: '/logo.png', // Contoh jika ada logo.png
+    apple: '/apple-touch-icon.png', // Opsional untuk perangkat Apple
+  },
 }
 
 export default function RootLayout({

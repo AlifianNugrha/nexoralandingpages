@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { Zap } from "lucide-react"
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP)
@@ -39,7 +38,6 @@ export default function DemoSection() {
       })
       setIndex((prev) => prev + 1)
     }, 2000)
-
     return () => clearInterval(interval)
   }, [index])
 
@@ -60,26 +58,66 @@ export default function DemoSection() {
       { opacity: 0, scale: 0.8, y: "30vh" },
       { opacity: 1, scale: 1.1, y: "30vh", duration: 1.5 }
     )
-
     tl.to(headerRef.current, { y: 0, scale: 1, duration: 1.5, ease: "power3.inOut" })
-
     tl.fromTo(cardRef.current,
       { y: 600, opacity: 0, scale: 1.4 },
       { y: 0, opacity: 1, scale: 1, duration: 2, ease: "power2.out" },
       "-=0.5"
     )
-
     tl.fromTo(buttonRef.current,
       { y: 50, opacity: 0, scale: 0.9 },
       { y: 0, opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" },
       "-=0.5"
     )
-
   }, { scope: containerRef })
 
   return (
     <div ref={containerRef} className="bg-white relative overflow-hidden min-h-screen">
-      <section className="h-screen w-full flex items-center justify-center px-4">
+
+      {/* LAYER BACKGROUND HEXAGON */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Container untuk Rotasi agar Line bergerak searah pola */}
+        <div className="absolute inset-[-50%] rotate-[15deg] scale-[1.3]">
+
+          {/* Pola Hexagon */}
+          <div
+            className="absolute inset-0 opacity-[0.25]"
+            style={{
+              backgroundImage: `
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 56 98'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%2301D2B3' fill-opacity='0.2' fill-rule='nonzero'%3E%3Cpath d='M27.99 18.5l26 15v30l-26 15L2 63.5v-30l25.99-15zM6 35.8l21.99-12.7L50 35.8v25.4L27.99 73.9 6 61.2V35.8zM0 30l25.96-15V0h4v15l26 15v30l-26 15V98h-4V75L0 60V30zm4 2.3v25.4l23.99 13.82L52 57.7V32.3L28 18.48 4 32.3z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+              `,
+              backgroundSize: '160px',
+            }}
+          />
+
+          {/* ANIMATED LINE (LASER SCAN EFFECT) */}
+          <motion.div
+            className="absolute inset-0 z-10"
+            style={{
+              background: 'linear-gradient(to bottom, transparent, rgba(1, 210, 179, 0.15), transparent)',
+              height: '200px',
+              width: '100%',
+            }}
+            animate={{
+              top: ['-20%', '120%']
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        </div>
+
+        {/* Masking Gradient agar bagian tengah tetap fokus */}
+        <div className="absolute inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,white_85%)]" />
+
+        {/* Soft Glow Colors */}
+        <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-[#01D2B3]/10 blur-[150px] rounded-full" />
+        <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-[#01D2B3]/10 blur-[150px] rounded-full" />
+      </div>
+
+      <section className="relative z-10 h-screen w-full flex items-center justify-center px-4">
         <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* KOLOM KIRI */}
@@ -91,15 +129,13 @@ export default function DemoSection() {
                   Kata Kami
                 </span>
               </h2>
-              <p className="text-lg text-muted-foreground max-w-md">
+              <p className="text-lg text-slate-600 max-w-md">
                 Coba sendiri dan rasakan pengalaman chatbot AI yang berbeda dengan teknologi terbaru kami.
               </p>
             </div>
 
             <div ref={buttonRef} className="relative group">
-              {/* Efek Glow di belakang button */}
               <div className="absolute -inset-1 bg-gradient-to-r from-[#01D2B3] to-[#65F5DF] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-
               <button className="relative bg-[#01D2B3] hover:bg-[#00b89c] text-white font-black uppercase tracking-widest text-xs px-10 py-5 rounded-xl transition-all shadow-2xl active:scale-95 flex items-center gap-2">
                 Mulai Chat Sekarang
               </button>
@@ -108,7 +144,7 @@ export default function DemoSection() {
 
           {/* KOLOM KANAN: CARD CHAT */}
           <div ref={cardRef} className="w-full">
-            <div className="bg-background rounded-[2.5rem] border-2 border-[#01D2B3] overflow-hidden shadow-[0_0_50px_-12px_rgba(1,210,179,0.3)]">
+            <div className="bg-white/90 backdrop-blur-md rounded-[2.5rem] border-2 border-[#01D2B3] overflow-hidden shadow-[0_0_50px_-12px_rgba(1,210,179,0.3)]">
               <div className="h-[500px] flex flex-col">
                 <div className="bg-[#01D2B3] text-white px-8 py-5 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold backdrop-blur-md">AI</div>
@@ -128,7 +164,6 @@ export default function DemoSection() {
                         key={msg.id}
                         initial={{ opacity: 0, x: msg.type === 'user' ? 20 : -20, scale: 0.9 }}
                         animate={{ opacity: 1, x: 0, scale: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 0.2 } }}
                         className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
                         <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm font-medium shadow-sm ${msg.type === 'user'
@@ -160,7 +195,6 @@ export default function DemoSection() {
 
         </div>
       </section>
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-border z-50" />
     </div>
   )
 }

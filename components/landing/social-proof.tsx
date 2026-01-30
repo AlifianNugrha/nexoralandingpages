@@ -5,12 +5,12 @@ import { motion } from "framer-motion"
 
 export default function SocialProof() {
   const companies = [
-    { name: 'TechCorp', src: '/logos/techcorp.svg' },
-    { name: 'StartupPro', src: '/logos/startuppro.svg' },
-    { name: 'Digital.id', src: '/logos/digital.svg' },
-    { name: 'CloudSync', src: '/logos/cloudsync.svg' },
-    { name: 'DataFlow', src: '/logos/dataflow.svg' },
-    { name: 'InnovateLabs', src: '/logos/innovate.svg' },
+    { name: 'Facebook', src: '/fb.png' },
+    { name: 'Google', src: '/gogle.jpg' },
+    { name: 'cloudflare', src: '/cloud.png' },
+    { name: 'linkedin', src: '/lindk.png' },
+    { name: 'amazon', src: '/amazon.png' },
+    { name: 'shopify', src: '/shopify.png' },
   ]
 
   const duplicatedCompanies = [...companies, ...companies]
@@ -55,7 +55,7 @@ export default function SocialProof() {
               <img
                 src={company.src}
                 alt={company.name}
-                className="h-8 sm:h-10 w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                className="h-8 sm:h-10 w-auto object-contain opacity-100  transition-all duration-300"
               />
             </div>
           ))}
