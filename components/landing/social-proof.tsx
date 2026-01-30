@@ -16,7 +16,7 @@ export default function SocialProof() {
   const duplicatedCompanies = [...companies, ...companies]
 
   return (
-    <section className="py-16 bg-background border-y border-border overflow-hidden pt-20 pb-40">
+    <section className="py-16 bg-white  overflow-hidden pt-20 pb-40">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         {/* HANYA FONT YANG FADE UP */}
         <motion.p

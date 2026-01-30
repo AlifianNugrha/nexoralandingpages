@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
+import { Zap } from "lucide-react"
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP)
@@ -27,11 +28,9 @@ export default function DemoSection() {
   const [messages, setMessages] = useState<typeof CHAT_DATA>([])
   const [index, setIndex] = useState(0)
 
-  // LOGIKA OTOMATIS & LOOPING
   useEffect(() => {
     const interval = setInterval(() => {
       setMessages((prev) => {
-        // Jika sudah sampai pesan terakhir, reset ke awal setelah jeda
         if (index >= CHAT_DATA.length) {
           setIndex(0)
           return []
@@ -39,7 +38,7 @@ export default function DemoSection() {
         return [...prev, CHAT_DATA[index]]
       })
       setIndex((prev) => prev + 1)
-    }, 2000) // Pesan muncul setiap 2 detik
+    }, 2000)
 
     return () => clearInterval(interval)
   }, [index])
@@ -57,23 +56,19 @@ export default function DemoSection() {
       }
     })
 
-    // 1. Header Intro
     tl.fromTo(headerRef.current,
       { opacity: 0, scale: 0.8, y: "30vh" },
-      { opacity: 1, scale: 1.2, y: "30vh", duration: 1.5 }
+      { opacity: 1, scale: 1.1, y: "30vh", duration: 1.5 }
     )
 
-    // 2. Header Move Up
     tl.to(headerRef.current, { y: 0, scale: 1, duration: 1.5, ease: "power3.inOut" })
 
-    // 3. Card Entrance (Besar -> Kecil)
     tl.fromTo(cardRef.current,
       { y: 600, opacity: 0, scale: 1.4 },
       { y: 0, opacity: 1, scale: 1, duration: 2, ease: "power2.out" },
       "-=0.5"
     )
 
-    // 4. Button Pop
     tl.fromTo(buttonRef.current,
       { y: 50, opacity: 0, scale: 0.9 },
       { y: 0, opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" },
@@ -83,53 +78,62 @@ export default function DemoSection() {
   }, { scope: containerRef })
 
   return (
-    <div ref={containerRef} className="bg-secondary relative overflow-hidden min-h-screen">
+    <div ref={containerRef} className="bg-white relative overflow-hidden min-h-screen">
       <section className="h-screen w-full flex items-center justify-center px-4">
         <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* KOLOM KIRI */}
           <div className="flex flex-col items-start gap-8">
             <div ref={headerRef} className="space-y-4">
-              <h2 className="text-4xl sm:text-6xl font-bold text-foreground leading-[1.1]">
-                Jangan Percaya <br /> Kata Kami
+              <h2 className="text-5xl sm:text-7xl font-black leading-[1.1] tracking-tighter text-slate-900">
+                Jangan Percaya <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#01D2B3] via-[#01D2B3] to-[#65F5DF]">
+                  Kata Kami
+                </span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-md">
                 Coba sendiri dan rasakan pengalaman chatbot AI yang berbeda dengan teknologi terbaru kami.
               </p>
             </div>
-            <div ref={buttonRef}>
-              <button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-10 py-4 rounded-xl transition-all shadow-lg active:scale-95">
+
+            <div ref={buttonRef} className="relative group">
+              {/* Efek Glow di belakang button */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#01D2B3] to-[#65F5DF] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+
+              <button className="relative bg-[#01D2B3] hover:bg-[#00b89c] text-white font-black uppercase tracking-widest text-xs px-10 py-5 rounded-xl transition-all shadow-2xl active:scale-95 flex items-center gap-2">
                 Mulai Chat Sekarang
               </button>
             </div>
           </div>
 
-          {/* KOLOM KANAN: CARD CHAT OTOMATIS */}
+          {/* KOLOM KANAN: CARD CHAT */}
           <div ref={cardRef} className="w-full">
-            <div className="bg-background rounded-2xl border-2 border-primary overflow-hidden shadow-2xl">
+            <div className="bg-background rounded-[2.5rem] border-2 border-[#01D2B3] overflow-hidden shadow-[0_0_50px_-12px_rgba(1,210,179,0.3)]">
               <div className="h-[500px] flex flex-col">
-                <div className="bg-primary text-primary-foreground px-6 py-4 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center font-bold">AI</div>
+                <div className="bg-[#01D2B3] text-white px-8 py-5 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold backdrop-blur-md">AI</div>
                   <div>
-                    <h3 className="font-semibold text-sm">Customer Support AI</h3>
-                    <p className="text-[10px] opacity-80 uppercase tracking-tighter">Automated Demo</p>
+                    <h3 className="font-bold text-sm">Customer Support AI</h3>
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                      <p className="text-[10px] opacity-80 uppercase tracking-widest font-bold">Automated Demo</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Body Chat - Auto Scroll ke Bawah */}
-                <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-background scroll-smooth">
+                <div className="flex-1 overflow-y-auto p-8 space-y-4 bg-slate-50/50 scroll-smooth">
                   <AnimatePresence initial={false}>
                     {messages.map((msg) => (
                       <motion.div
                         key={msg.id}
-                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        initial={{ opacity: 0, x: msg.type === 'user' ? 20 : -20, scale: 0.9 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
                         exit={{ opacity: 0, transition: { duration: 0.2 } }}
                         className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
-                        <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.type === 'user'
-                          ? 'bg-primary text-primary-foreground rounded-tr-none'
-                          : 'bg-primary/10 text-foreground rounded-tl-none border border-primary/10'
+                        <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm font-medium shadow-sm ${msg.type === 'user'
+                          ? 'bg-[#01D2B3] text-white rounded-tr-none'
+                          : 'bg-white text-slate-700 rounded-tl-none border border-slate-100'
                           }`}>
                           {msg.text}
                         </div>
@@ -138,9 +142,14 @@ export default function DemoSection() {
                   </AnimatePresence>
                 </div>
 
-                <div className="border-t border-border p-4">
+                <div className="border-t border-slate-100 p-6 bg-white">
                   <div className="flex gap-2">
-                    <div className="flex-1 bg-secondary border border-border rounded-lg px-4 py-2 text-sm text-muted-foreground/40 animate-pulse">
+                    <div className="flex-1 bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-xs text-slate-400 font-medium italic flex items-center gap-2">
+                      <span className="flex gap-1">
+                        <span className="w-1 h-1 bg-slate-300 rounded-full animate-bounce"></span>
+                        <span className="w-1 h-1 bg-slate-300 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                        <span className="w-1 h-1 bg-slate-300 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                      </span>
                       AI sedang mengetik...
                     </div>
                   </div>
@@ -155,5 +164,3 @@ export default function DemoSection() {
     </div>
   )
 }
-
-
