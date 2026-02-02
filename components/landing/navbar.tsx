@@ -40,12 +40,12 @@ export default function Navbar() {
         <button
           onClick={() => setIsVisible(!isVisible)}
           className={`pointer-events-auto flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-90 group relative
-            ${isVisible ? 'translate-y-[15px] text-slate-300 hover:text-[#01D2B3]' : 'translate-y-[-20px] text-[#01D2B3]'}
+            ${isVisible ? 'translate-y-[15px] text-slate-300 hover:text-[#1E90FF]' : 'translate-y-[-20px] text-[#1E90FF]'}
           `}
         >
-          {!isVisible && <div className="absolute inset-0 bg-[#01D2B3]/20 blur-xl rounded-full animate-pulse" />}
+          {!isVisible && <div className="absolute inset-0 bg-[#1E90FF]/20 blur-xl rounded-full animate-pulse" />}
           <Power size={20} strokeWidth={2.5} className="relative z-10" />
-          <div className={`absolute -bottom-2 w-1 h-1 rounded-full bg-[#01D2B3] transition-all duration-500 ${isVisible ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`} />
+          <div className={`absolute -bottom-2 w-1 h-1 rounded-full bg-[#1E90FF] transition-all duration-500 ${isVisible ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`} />
         </button>
       </div>
 
@@ -53,12 +53,12 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${isVisible ? 'translate-y-0' : '-translate-y-full'
           }`}
-        style={{ height: '80px', filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.05)) drop-shadow(0 4px 6px rgba(1, 210, 179, 0.15))' }}
+        style={{ height: '80px', filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.05)) drop-shadow(0 4px 6px rgba(30, 144, 255, 0.15))' }}
       >
         <div className="absolute inset-0 w-full h-full">
           <div className="absolute inset-0 w-full h-full md:[clip-path:url(#final-solid-concave)] [clip-path:none] bg-white" />
           <svg className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" viewBox="0 0 1 1" preserveAspectRatio="none">
-            <path d={pathD} fill="none" stroke="rgba(1, 210, 179, 0.25)" strokeWidth="0.004" vectorEffect="non-scaling-stroke" />
+            <path d={pathD} fill="none" stroke="rgba(30, 144, 255, 0.25)" strokeWidth="0.004" vectorEffect="non-scaling-stroke" />
           </svg>
           <div className="absolute inset-0 border-b border-slate-100 md:hidden" />
         </div>
@@ -68,7 +68,7 @@ export default function Navbar() {
 
           {/* LOGO */}
           <div className={`transition-all duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-            <div className="relative w-9 h-9">
+            <div className="relative w-28 h-28">
               <Image src="/logo.png" alt="Logo" fill className="object-contain" priority />
             </div>
           </div>
@@ -80,7 +80,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-[14px] font-bold text-slate-600 hover:text-[#01D2B3] transition-all tracking-tight"
+                className="text-[14px] font-bold text-slate-600 hover:text-[#1E90FF] transition-all tracking-tight"
               >
                 {link.name}
               </a>

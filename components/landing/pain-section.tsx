@@ -114,7 +114,7 @@ export default function PainSection() {
 
           {/* Header */}
           <div ref={headerRef} className="text-center z-50 relative pt-10 lg:pt-30">
-            <h2 className="text-xl md:text-5xl font-black tracking-tight mb-2 bg-gradient-to-br from-[#01D2B3] via-[#01D2B3] to-[#65F5DF] bg-clip-text text-transparent">
+            <h2 className="text-xl md:text-5xl font-black tracking-tight mb-2 bg-gradient-to-br from-[#1E90FF] via-[#1E90FF] to-[#65F5DF] bg-clip-text text-transparent">
               Apakah Tim Support Anda Kewalahan?
             </h2>
             <p className="text-muted-foreground text-[10px] md:text-lg max-w-xl mx-auto px-4 relative">

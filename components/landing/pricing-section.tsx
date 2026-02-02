@@ -34,23 +34,23 @@ const PricingCard = ({
         ease: [0.21, 0.45, 0.32, 0.9]
       }}
       className={`relative rounded-2xl p-6 space-y-6 flex flex-col transition-all duration-500 group ${highlighted
-        ? 'md:scale-105 border-2 border-[#01D2B3] shadow-[0_20px_50px_rgba(1,210,179,0.2)] z-10 bg-white'
-        : 'border border-[#01D2B3]/20 bg-white hover:border-[#01D2B3]/50 shadow-sm'
+        ? 'md:scale-105 border-2 border-[#1E90FF] shadow-[0_20px_50px_rgba(30,144,255,0.2)] z-10 bg-white'
+        : 'border border-[#1E90FF]/20 bg-white hover:border-[#1E90FF]/50 shadow-sm'
         }`}
     >
       {/* Background Pattern internal card */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none rounded-2xl bg-[radial-gradient(#01D2B3_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none rounded-2xl bg-[radial-gradient(#1E90FF_1px,transparent_1px)] [background-size:16px_16px]" />
 
       {highlighted && (
         <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 z-20">
-          <span className="bg-[#01D2B3] text-white px-4 py-1 rounded-full text-[10px] uppercase tracking-[0.1em] font-black shadow-lg">
+          <span className="bg-[#1E90FF] text-white px-4 py-1 rounded-full text-[10px] uppercase tracking-[0.1em] font-black shadow-lg">
             Paling Populer
           </span>
         </div>
       )}
 
       <div className="relative z-10 space-y-1">
-        <h3 className="text-xl font-bold tracking-tight text-[#01D2B3]">
+        <h3 className="text-xl font-bold tracking-tight text-[#1E90FF]">
           {name}
         </h3>
         <p className="text-slate-500 text-xs leading-relaxed font-medium">{description}</p>
@@ -79,8 +79,8 @@ const PricingCard = ({
       <div className="relative z-10 overflow-hidden rounded-xl">
         <Button
           className={`w-full h-11 text-sm font-bold transition-all duration-500 relative overflow-hidden group/btn ${highlighted
-            ? 'bg-[#01D2B3] text-white shadow-[0_10px_20px_rgba(1,210,179,0.3)] hover:scale-[1.02] hover:bg-[#00b89c]'
-            : 'bg-[#01D2B3]/10 text-[#01D2B3] hover:bg-[#01D2B3] hover:text-white'
+            ? 'bg-[#1E90FF] text-white shadow-[0_10px_20px_rgba(30,144,255,0.3)] hover:scale-[1.02] hover:bg-[#00BFFF]'
+            : 'bg-[#1E90FF]/10 text-[#1E90FF] hover:bg-[#1E90FF] hover:text-white'
             }`}
         >
           {highlighted && (
@@ -100,7 +100,7 @@ const PricingCard = ({
       <div className="relative z-10 space-y-3.5 pt-5 border-t border-slate-100 flex-grow">
         {features.map((feature, i) => (
           <div key={i} className="flex items-start gap-3 group/item">
-            <div className="mt-0.5 rounded-full p-0.5 bg-[#01D2B3]/10 text-[#01D2B3] transition-colors group-hover/item:bg-[#01D2B3] group-hover/item:text-white">
+            <div className="mt-0.5 rounded-full p-0.5 bg-[#1E90FF]/10 text-[#1E90FF] transition-colors group-hover/item:bg-[#1E90FF] group-hover/item:text-white">
               <Check className="w-3.5 h-3.5 stroke-[3px]" />
             </div>
             <span className="text-xs text-slate-600 font-medium leading-snug group-hover:text-slate-900 transition-colors">
@@ -150,17 +150,17 @@ export default function PricingSection() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M0 0 L50 50 L0 100" stroke="#01D2B3" strokeWidth="0.1" />
-          <path d="M0 20 L50 50 L0 80" stroke="#01D2B3" strokeWidth="0.1" />
-          <path d="M0 40 L50 50 L0 60" stroke="#01D2B3" strokeWidth="0.1" />
-          <path d="M100 0 L50 50 L100 100" stroke="#01D2B3" strokeWidth="0.1" />
-          <path d="M100 20 L50 50 L100 80" stroke="#01D2B3" strokeWidth="0.1" />
-          <path d="M100 40 L50 50 L100 60" stroke="#01D2B3" strokeWidth="0.1" />
-          <circle cx="50" cy="50" r="0.5" fill="#01D2B3" />
+          <path d="M0 0 L50 50 L0 100" stroke="#1E90FF" strokeWidth="0.1" />
+          <path d="M0 20 L50 50 L0 80" stroke="#1E90FF" strokeWidth="0.1" />
+          <path d="M0 40 L50 50 L0 60" stroke="#1E90FF" strokeWidth="0.1" />
+          <path d="M100 0 L50 50 L100 100" stroke="#1E90FF" strokeWidth="0.1" />
+          <path d="M100 20 L50 50 L100 80" stroke="#1E90FF" strokeWidth="0.1" />
+          <path d="M100 40 L50 50 L100 60" stroke="#1E90FF" strokeWidth="0.1" />
+          <circle cx="50" cy="50" r="0.5" fill="#1E90FF" />
         </svg>
       </div>
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#01D2B3]/5 blur-[120px] rounded-full z-0 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#1E90FF]/5 blur-[120px] rounded-full z-0 pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
         <motion.div
@@ -172,7 +172,7 @@ export default function PricingSection() {
         >
           <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
             <span className="block text-slate-900">Solusi Tepat untuk</span>
-            <span className="bg-gradient-to-r from-[#01D2B3] via-[#01D2B3] to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#1E90FF] via-[#1E90FF] to-cyan-400 bg-clip-text text-transparent">
               Skalakan Bisnis Anda
             </span>
           </h2>

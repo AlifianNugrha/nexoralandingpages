@@ -19,7 +19,7 @@ const features = [
     title: 'Human-Like Interaction',
     description: 'Bahasa natural yang luwes seperti asisten manusia asli.',
     points: ['Bahasa Natural', 'Respon Instan 24/7'],
-    color: 'bg-[#01D2B3]'
+    color: 'bg-[#1E90FF]'
   },
   {
     id: 'handoff',
@@ -48,7 +48,7 @@ export default function FeaturesSection() {
         return (
           <div className="w-full max-w-[220px] space-y-2 scale-90">
             <div className="bg-white/20 p-2 rounded-xl rounded-bl-none text-[10px] text-white/90 w-2/3 border border-white/10">Halo! Ada bantuan?</div>
-            <div className="bg-white p-2 rounded-xl rounded-br-none text-[10px] text-[#01D2B3] ml-auto w-2/3 text-right shadow-sm font-bold">Cek pesanan dong.</div>
+            <div className="bg-white p-2 rounded-xl rounded-br-none text-[10px] text-[#1E90FF] ml-auto w-2/3 text-right shadow-sm font-bold">Cek pesanan dong.</div>
           </div>
         )
       case 2:
@@ -69,9 +69,9 @@ export default function FeaturesSection() {
 
         {/* Compact Header */}
         <div className="text-center mb-20 mt-20 ">
-          <h2 className="text-[10px] font-black tracking-[0.2em] uppercase text-[#01D2B3] mb-2">Capabilities</h2>
+          <h2 className="text-[10px] font-black tracking-[0.2em] uppercase text-[#1E90FF] mb-2">Capabilities</h2>
           <h3 className="text-5xl lg:text-6xl font-black text-slate-900 tracking-tight">
-            Fitur Utama <span className="text-[#01D2B3]">Chatbot Nexora.</span>
+            Fitur Utama <span className="text-[#1E90FF]">Chatbot Nanobot</span>
           </h3>
         </div>
 
@@ -110,7 +110,7 @@ export default function FeaturesSection() {
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -10 }}
-                className={`w-full flex flex-col rounded-[2rem] border border-white/40 shadow-xl overflow-hidden ${activeTab === 1 ? 'bg-[#01D2B3] text-white' : 'bg-white text-slate-900'
+                className={`w-full flex flex-col rounded-[2rem] border border-white/40 shadow-xl overflow-hidden ${activeTab === 1 ? 'bg-[#1E90FF] text-white' : 'bg-white text-slate-900'
                   }`}
               >
                 <div className="p-6 lg:p-8 flex-1 flex flex-col justify-between">

@@ -64,7 +64,7 @@ export default function FAQSection() {
             Support Center
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tight">
-            Punya <span className="bg-gradient-to-r from-primary to-[#01D2B3] bg-clip-text text-transparent">Pertanyaan?</span>
+            Punya <span className="bg-gradient-to-r from-primary to-[#1E90FF] bg-clip-text text-transparent">Pertanyaan?</span>
           </h2>
           <p className="text-muted-foreground font-medium">
             Segala hal yang perlu Anda ketahui tentang layanan kami.

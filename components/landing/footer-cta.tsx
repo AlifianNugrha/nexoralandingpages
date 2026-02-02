@@ -24,7 +24,7 @@ export default function FooterCTA() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-foreground hover:bg-foreground/20 bg-transparent"
+              className="border-primary-foreground text-white hover:bg-white/20 bg-transparent"
             >
               Hubungi Sales
             </Button>
@@ -119,7 +119,7 @@ export default function FooterCTA() {
 
           {/* Bottom Footer */}
           <div className="border-t border-primary-foreground/20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm opacity-75">
-            <p>&copy; 2024 ChatBot AI. Semua hak dilindungi.</p>
+            <p>&copy; 2026 NanoBot by NanoArtif . Semua hak dilindungi.</p>
             <div className="flex items-center gap-6">
               <a href="#" className="hover:opacity-100 transition">
                 Terms of Service
