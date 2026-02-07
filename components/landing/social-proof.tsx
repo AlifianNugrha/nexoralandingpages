@@ -2,10 +2,24 @@
 
 import React from "react"
 import { motion } from "framer-motion"
+import { useLanguage } from './language-context'
 
 export default function SocialProof() {
+  const { lang } = useLanguage()
+
+  const t = {
+    ID: {
+      trustedBy: "Dipercaya oleh ratusan perusahaan"
+    },
+    EN: {
+      trustedBy: "Trusted by hundreds of companies"
+    }
+  }
+
+  const content = t[lang]
+
   const companies = [
-    { name: 'Facebook', src: '/fb.png' },
+    { name: 'ITBAAS', src: '/itbaas.png' },
     { name: 'Google', src: '/gogle.jpg' },
     { name: 'cloudflare', src: '/cloud.png' },
     { name: 'linkedin', src: '/lindk.png' },
@@ -25,7 +39,7 @@ export default function SocialProof() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center text-muted-foreground mb-12 text-sm font-medium uppercase tracking-wide"
         >
-          Dipercaya oleh ratusan perusahaan
+          {content.trustedBy}
         </motion.p>
       </div>
 

@@ -5,19 +5,13 @@ import { Clock, TrendingDown, Zap, ShieldAlert } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
+import { useLanguage } from './language-context'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP)
 }
 
-const painPoints = [
-  { icon: Clock, title: "Slow Response", desc: "Pelanggan menunggu terlalu lama, menyebabkan frustrasi." },
-  { icon: TrendingDown, title: "Inconsistent Quality", desc: "Kualitas support naik turun tergantung mood staff." },
-  { icon: Zap, title: "Staff Burnout", desc: "Tim support stress menghadapi pertanyaan berulang." },
-  { icon: ShieldAlert, title: "Lost Opportunities", desc: "Lead potensial hilang karena tidak terlayani cepat." }
-]
-
-const PainCard = ({ point }: { point: typeof painPoints[0] }) => {
+const PainCard = ({ point }: { point: { icon: any, title: string, desc: string } }) => {
   const Icon = point.icon
   return (
     <div className="pain-card group relative p-[2px] rounded-2xl h-full overflow-hidden bg-gradient-to-br from-primary/80 via-primary/20 to-transparent">
@@ -44,6 +38,32 @@ export default function PainSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
+  const { lang } = useLanguage()
+
+  const t = {
+    ID: {
+      headline: "Apakah Tim Support Anda Kewalahan?",
+      subheadline: '"Masalah klasik yang membunuh pertumbuhan bisnis"',
+      points: [
+        { icon: Clock, title: "Slow Response", desc: "Pelanggan menunggu terlalu lama, menyebabkan frustrasi." },
+        { icon: TrendingDown, title: "Inconsistent Quality", desc: "Kualitas support naik turun tergantung mood staff." },
+        { icon: Zap, title: "Staff Burnout", desc: "Tim support stress menghadapi pertanyaan berulang." },
+        { icon: ShieldAlert, title: "Lost Opportunities", desc: "Lead potensial hilang karena tidak terlayani cepat." }
+      ]
+    },
+    EN: {
+      headline: "Is Your Support Team Overwhelmed?",
+      subheadline: '"Classic problems that kill business growth"',
+      points: [
+        { icon: Clock, title: "Slow Response", desc: "Customers wait too long, causing frustration." },
+        { icon: TrendingDown, title: "Inconsistent Quality", desc: "Support quality fluctuates depending on staff mood." },
+        { icon: Zap, title: "Staff Burnout", desc: "Support team stressed facing repetitive questions." },
+        { icon: ShieldAlert, title: "Lost Opportunities", desc: "Potential leads lost because they are not served quickly." }
+      ]
+    }
+  }
+
+  const content = t[lang]
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -115,10 +135,10 @@ export default function PainSection() {
           {/* Header */}
           <div ref={headerRef} className="text-center z-50 relative pt-10 lg:pt-30">
             <h2 className="text-xl md:text-5xl font-black tracking-tight mb-2 bg-gradient-to-br from-[#1E90FF] via-[#1E90FF] to-[#65F5DF] bg-clip-text text-transparent">
-              Apakah Tim Support Anda Kewalahan?
+              {content.headline}
             </h2>
             <p className="text-muted-foreground text-[10px] md:text-lg max-w-xl mx-auto px-4 relative">
-              <span className="relative z-10">"Masalah klasik yang membunuh pertumbuhan bisnis"</span>
+              <span className="relative z-10">{content.subheadline}</span>
               {/* Gradient glow tipis di belakang teks p agar lebih estetik */}
               <span className="absolute inset-0 bg-primary/5 blur-2xl -z-10 rounded-full" />
             </p>
@@ -128,10 +148,10 @@ export default function PainSection() {
 
             {/* Desktop View Cards */}
             <div className="absolute inset-0 z-40 hidden lg:block pointer-events-none">
-              <div className="absolute left-[10%] top-[10%] w-[240px] pointer-events-auto"><PainCard point={painPoints[0]} /></div>
-              <div className="absolute right-[5%] top-[10%] w-[240px] pointer-events-auto"><PainCard point={painPoints[1]} /></div>
-              <div className="absolute left-[-5%] bottom-[19%] w-[240px] pointer-events-auto"><PainCard point={painPoints[2]} /></div>
-              <div className="absolute right-[-5%] bottom-[22%] w-[240px] pointer-events-auto"><PainCard point={painPoints[3]} /></div>
+              <div className="absolute left-[10%] top-[10%] w-[240px] pointer-events-auto"><PainCard point={content.points[0]} /></div>
+              <div className="absolute right-[5%] top-[10%] w-[240px] pointer-events-auto"><PainCard point={content.points[1]} /></div>
+              <div className="absolute left-[-5%] bottom-[19%] w-[240px] pointer-events-auto"><PainCard point={content.points[2]} /></div>
+              <div className="absolute right-[-5%] bottom-[22%] w-[240px] pointer-events-auto"><PainCard point={content.points[3]} /></div>
             </div>
 
             {/* Gambar Utama */}
@@ -148,7 +168,7 @@ export default function PainSection() {
             {/* Mobile View Cards */}
             <div className="lg:hidden w-full z-40 relative px-2">
               <div className="grid grid-cols-2 gap-2 w-full">
-                {painPoints.map((point, i) => (
+                {content.points.map((point, i) => (
                   <div key={i}>
                     <PainCard point={point} />
                   </div>

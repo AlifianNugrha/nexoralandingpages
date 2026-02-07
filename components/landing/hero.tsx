@@ -4,9 +4,11 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { Button } from '@/components/ui/button'
 import { ArrowRight, TrendingUp, Users, CheckCircle2 } from 'lucide-react'
+import { useLanguage } from './language-context'
 
 export default function Hero() {
   const containerRef = useRef(null);
+  const { lang } = useLanguage()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -68,6 +70,45 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
+  const t = {
+    ID: {
+      headline: <>Ubah Pengunjung Jadi <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#1E90FF]/60">Pembeli.</span></>,
+      subheadline: "Chatbot cerdas yang memahami bisnismu. Tingkatkan konversi secara otomatis tanpa harus berjaga di depan layar.",
+      ctaPrimary: "Buat Chatbot Sekarang",
+      ctaSecondary: "Lihat Demo",
+      users: "Pengguna",
+      trusted: "1,200+ Terpercaya",
+      growth: "Pertumbuhan",
+      status: "Status",
+      active: "24/7 Aktif",
+      chat1: "Halo! Ada yang bisa kami bantu? 👋",
+      chat2: "Apa produk ini ada garansi?",
+      chat3: "Tentu! Semua produk kami bergaransi 1 tahun.",
+      chat4: "Oke, saya mau pesan satu!",
+      chat5: "Pilihan bagus! Silakan klik link di bawah ini ya.",
+      typing: "Tulis pesan..."
+    },
+    EN: {
+      headline: <>Turn Visitors Into <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#1E90FF]/60">Buyers.</span></>,
+      subheadline: "Intelligent chatbot that understands your business. Automatically increase conversions without guarding the screen.",
+      ctaPrimary: "Create Chatbot Now",
+      ctaSecondary: "View Demo",
+      users: "Users",
+      trusted: "1,200+ Trusted",
+      growth: "Growth",
+      status: "Status",
+      active: "24/7 Active",
+      chat1: "Hello! How can we help you? 👋",
+      chat2: "Does this product have a warranty?",
+      chat3: "Sure! All our products have a 1-year warranty.",
+      chat4: "Okay, I want to order one!",
+      chat5: "Great choice! Please click the link below.",
+      typing: "Type a message..."
+    }
+  }
+
+  const content = t[lang]
+
   return (
     <section ref={containerRef} className="relative overflow-hidden pt-32 pb-40 px-4 sm:px-6 lg:px-8 bg-[#f8fafc] min-h-screen flex items-center">
 
@@ -91,11 +132,11 @@ export default function Hero() {
           <div className="space-y-8">
             <div className="space-y-6">
               <h1 className="animate-item text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-balance text-black">
-                Ubah Pengunjung Jadi <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#1E90FF]/60">Pembeli.</span>
+                {content.headline}
               </h1>
 
               <p className="animate-item text-lg sm:text-xl text-muted-foreground max-w-lg leading-relaxed font-medium">
-                Chatbot cerdas yang memahami bisnismu. Tingkatkan konversi secara otomatis tanpa harus berjaga di depan layar.
+                {content.subheadline}
               </p>
             </div>
 
@@ -104,7 +145,7 @@ export default function Hero() {
                 size="lg"
                 className="rounded-full px-10 h-14 text-base font-bold shadow-xl shadow-[#1E90FF]/25 bg-[#1E90FF] hover:bg-[#00BFFF] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] group text-white"
               >
-                Buat Chatbot Sekarang
+                {content.ctaPrimary}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
 
@@ -113,7 +154,7 @@ export default function Hero() {
                 variant="ghost"
                 className="rounded-full px-10 h-14 text-base font-semibold border-2 border-[#1E90FF]/10 hover:border-[#1E90FF]/20 hover:bg-[#1E90FF]/5 transition-all duration-300"
               >
-                Lihat Demo
+                {content.ctaSecondary}
               </Button>
             </div>
           </div>
@@ -127,8 +168,8 @@ export default function Hero() {
                 <Users className="w-5 h-5" />
               </div>
               <div className="min-w-0">
-                <p className="text-[10px] text-muted-foreground font-medium uppercase truncate">Pengguna</p>
-                <p className="text-sm font-bold truncate">1,200+ Terpercaya</p>
+                <p className="text-[10px] text-muted-foreground font-medium uppercase truncate">{content.users}</p>
+                <p className="text-sm font-bold truncate">{content.trusted}</p>
               </div>
             </div>
 
@@ -139,7 +180,7 @@ export default function Hero() {
                   <TrendingUp className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-[10px] text-muted-foreground font-medium uppercase">Pertumbuhan</p>
+                  <p className="text-[10px] text-muted-foreground font-medium uppercase">{content.growth}</p>
                   <p className="text-sm font-bold">+85% Seo</p>
                 </div>
               </div>
@@ -163,8 +204,8 @@ export default function Hero() {
                 <CheckCircle2 className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] text-muted-foreground font-medium uppercase">Status</p>
-                <p className="text-sm font-bold">24/7 Aktif</p>
+                <p className="text-[10px] text-muted-foreground font-medium uppercase">{content.status}</p>
+                <p className="text-sm font-bold">{content.active}</p>
               </div>
             </div>
 
@@ -189,25 +230,25 @@ export default function Hero() {
 
                 <div className="space-y-4 min-h-[220px] flex flex-col justify-end">
                   <div className="chat-bubble cb-1 bg-muted/40 rounded-xl rounded-tl-none p-3.5 text-xs max-w-[85%] self-start border border-border/50">
-                    Halo! Ada yang bisa kami bantu? 👋
+                    {content.chat1}
                   </div>
                   <div className="chat-bubble cb-2 bg-[#1E90FF] text-white rounded-xl rounded-tr-none p-3.5 text-xs max-w-[85%] self-end font-medium">
-                    Apa produk ini ada garansi?
+                    {content.chat2}
                   </div>
                   <div className="chat-bubble cb-3 bg-muted/40 rounded-xl rounded-tl-none p-3.5 text-xs max-w-[85%] self-start border border-border/50">
-                    Tentu! Semua produk kami bergaransi 1 tahun.
+                    {content.chat3}
                   </div>
                   <div className="chat-bubble cb-4 bg-[#1E90FF] text-white rounded-xl rounded-tr-none p-3.5 text-xs max-w-[85%] self-end font-medium">
-                    Oke, saya mau pesan satu!
+                    {content.chat4}
                   </div>
                   <div className="chat-bubble cb-5 bg-[#1E90FF]/10 border border-[#1E90FF]/20 text-[#1E90FF] rounded-xl rounded-tl-none p-3.5 text-xs max-w-[85%] self-start font-bold">
-                    Pilihan bagus! Silakan klik link di bawah ini ya.
+                    {content.chat5}
                   </div>
                 </div>
 
                 <div className="pt-2 border-t border-border/50 text-center">
                   <div className="h-10 rounded-full bg-muted/30 flex items-center px-4 text-xs text-muted-foreground/50 font-medium">
-                    Tulis pesan...
+                    {content.typing}
                   </div>
                 </div>
               </div>

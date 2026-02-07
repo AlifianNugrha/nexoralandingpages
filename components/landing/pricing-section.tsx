@@ -3,6 +3,7 @@
 import { Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
+import { useLanguage } from './language-context'
 
 interface PricingCardProps {
   name: string
@@ -12,6 +13,7 @@ interface PricingCardProps {
   highlighted: boolean
   index: number
   isCustom?: boolean
+  t: any
 }
 
 const PricingCard = ({
@@ -22,6 +24,7 @@ const PricingCard = ({
   highlighted,
   index,
   isCustom,
+  t
 }: PricingCardProps) => {
   return (
     <motion.div
@@ -44,7 +47,7 @@ const PricingCard = ({
       {highlighted && (
         <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 z-20">
           <span className="bg-[#1E90FF] text-white px-4 py-1 rounded-full text-[10px] uppercase tracking-[0.1em] font-black shadow-lg">
-            Paling Populer
+            {t.mostPopular}
           </span>
         </div>
       )}
@@ -60,19 +63,19 @@ const PricingCard = ({
         <div className="flex items-baseline gap-1 text-slate-900">
           {isCustom ? (
             <span className="text-2xl md:text-3xl font-extrabold tracking-tighter">
-              Hubungi Kami
+              {t.contactUs}
             </span>
           ) : (
             <>
               <span className="text-3xl font-extrabold tracking-tighter">
                 Rp {price.toLocaleString('id-ID')}
               </span>
-              <span className="text-slate-400 text-sm font-bold">/bln</span>
+              <span className="text-slate-400 text-sm font-bold">/{t.month}</span>
             </>
           )}
         </div>
         <p className="text-[10px] text-slate-400 font-medium">
-          {isCustom ? 'Estimasi harga sesuai kebutuhan' : 'Auto-renew setiap bulan'}
+          {isCustom ? t.customEstimate : t.autoRenew}
         </p>
       </div>
 
@@ -92,7 +95,7 @@ const PricingCard = ({
             />
           )}
           <span className="relative z-10">
-            {isCustom ? 'Konsultasi Sekarang' : 'Mulai Sekarang'}
+            {isCustom ? t.consultNow : t.startNow}
           </span>
         </Button>
       </div>
@@ -114,30 +117,85 @@ const PricingCard = ({
 }
 
 export default function PricingSection() {
-  const plans = [
-    {
-      name: 'UMKM',
-      price: 60000,
-      description: 'Esensial untuk UMKM yang baru memulai.',
-      features: ['1 AI Chatbot', '1,000 Pesan/Bulan', 'Community Support', 'Basic Analytics'],
-      highlighted: false,
+  const { lang } = useLanguage()
+
+  const t = {
+    ID: {
+      headline: "Solusi Tepat untuk",
+      highlight: "Skalakan Bisnis Anda",
+      subheadline: "Sistem harga yang fleksibel dan transparan. Tanpa biaya tersembunyi, fokus sepenuhnya pada pertumbuhan performa bisnis Anda.",
+      mostPopular: "Paling Populer",
+      contactUs: "Hubungi Kami",
+      month: "bln",
+      customEstimate: "Estimasi harga sesuai kebutuhan",
+      autoRenew: "Auto-renew setiap bulan",
+      consultNow: "Konsultasi Sekarang",
+      startNow: "Mulai Sekarang",
+      plans: [
+        {
+          name: 'UMKM',
+          price: 0,
+          description: 'Esensial untuk UMKM yang baru memulai.',
+          features: ['1 AI Chatbot', '1,000 Pesan/Bulan', 'Community Support', 'Basic Analytics'],
+          highlighted: false,
+        },
+        {
+          name: 'Pro',
+          price: 100000,
+          description: 'Scale-up bisnis Anda dengan fitur advanced.',
+          features: ['5 AI Chatbots', '10,000 Pesan/Bulan', 'Priority Support', 'Full Fitur', 'Pro Dashboard', 'API Access'],
+          highlighted: true,
+        },
+        {
+          name: 'Custom',
+          price: 0,
+          isCustom: true,
+          description: 'Solusi custom untuk korporasi besar.',
+          features: ['Custom Chatbot', 'Unlimited Chatbots', 'Unlimited Pesan', '24/7 Phone Support', 'Dedicated Manager', 'Custom Security'],
+          highlighted: false,
+        },
+      ]
     },
-    {
-      name: 'Pro',
-      price: 500000,
-      description: 'Scale-up bisnis Anda dengan fitur advanced.',
-      features: ['5 AI Chatbots', '10,000 Pesan/Bulan', 'Priority Support', 'Full Customization', 'Pro Dashboard', 'API Access'],
-      highlighted: true,
-    },
-    {
-      name: 'Custom',
-      price: 0,
-      isCustom: true,
-      description: 'Solusi custom untuk korporasi besar.',
-      features: ['Custom Chatbot', 'Unlimited Chatbots', 'Unlimited Pesan', '24/7 Phone Support', 'Dedicated Manager', 'Custom Security'],
-      highlighted: false,
-    },
-  ]
+    EN: {
+      headline: "Right Solution to",
+      highlight: "Scale Your Business",
+      subheadline: "Flexible and transparent pricing system. No hidden fees, focus entirely on your business performance growth.",
+      mostPopular: "Most Popular",
+      contactUs: "Contact Us",
+      month: "mo",
+      customEstimate: "Price estimation based on needs",
+      autoRenew: "Auto-renew every month",
+      consultNow: "Consult Now",
+      startNow: "Start Now",
+      plans: [
+        {
+          name: 'SME',
+          price: 0,
+          description: 'Essential for new SMEs starting out.',
+          features: ['1 AI Chatbot', '1,000 Messages/Month', 'Community Support', 'Basic Analytics'],
+          highlighted: false,
+        },
+        {
+          name: 'Pro',
+          price: 100000,
+          description: 'Scale-up your business with advanced features.',
+          features: ['5 AI Chatbots', '10,000 Messages/Month', 'Priority Support', 'Full Feature', 'Pro Dashboard', 'API Access'],
+          highlighted: true,
+        },
+        {
+          name: 'Custom',
+          price: 0,
+          isCustom: true,
+          description: 'Custom solution for large corporations.',
+          features: ['Custom Chatbot', 'Unlimited Chatbots', 'Unlimited Messages', '24/7 Phone Support', 'Dedicated Manager', 'Custom Security'],
+          highlighted: false,
+        },
+      ]
+    }
+  }
+
+  const content = t[lang]
+  const plans = content.plans
 
   return (
     <section id="pricing" className="relative py-24 px-4 overflow-hidden bg-white">
@@ -171,21 +229,20 @@ export default function PricingSection() {
           className="text-center mb-16 space-y-4"
         >
           <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
-            <span className="block text-slate-900">Solusi Tepat untuk</span>
+            <span className="block text-slate-900">{content.headline}</span>
             <span className="bg-gradient-to-r from-[#1E90FF] via-[#1E90FF] to-cyan-400 bg-clip-text text-transparent">
-              Skalakan Bisnis Anda
+              {content.highlight}
             </span>
           </h2>
 
           <p className="text-sm md:text-base text-slate-500 max-w-xl mx-auto font-medium leading-relaxed">
-            Sistem harga yang fleksibel dan transparan. Tanpa biaya tersembunyi,
-            fokus sepenuhnya pada pertumbuhan performa bisnis Anda.
+            {content.subheadline}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {plans.map((plan, index) => (
-            <PricingCard key={index} index={index} {...plan} />
+            <PricingCard key={index} index={index} {...plan} t={content} />
           ))}
         </div>
       </div>

@@ -3,36 +3,85 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Upload, MessageCircle, Phone, Check, FileText, Database, Cpu, User, Zap } from 'lucide-react'
-
-const features = [
-  {
-    id: 'train',
-    icon: Upload,
-    title: 'Train on Your Data',
-    description: 'Upload PDF atau link website, AI langsung paham bisnis Anda.',
-    points: ['PDF & Web Link', 'Instant Understanding'],
-    color: 'bg-blue-500'
-  },
-  {
-    id: 'human',
-    icon: MessageCircle,
-    title: 'Human-Like Interaction',
-    description: 'Bahasa natural yang luwes seperti asisten manusia asli.',
-    points: ['Bahasa Natural', 'Respon Instan 24/7'],
-    color: 'bg-[#1E90FF]'
-  },
-  {
-    id: 'handoff',
-    icon: Phone,
-    title: 'Seamless Handoff',
-    description: 'Berikan notifikasi agar Anda bisa ambil alih kapan saja.',
-    points: ['Human Agent Handoff', 'Isu Kompleks'],
-    color: 'bg-orange-500'
-  },
-]
+import { useLanguage } from './language-context'
 
 export default function FeaturesSection() {
   const [activeTab, setActiveTab] = useState(0)
+  const { lang } = useLanguage()
+
+  const t = {
+    ID: {
+      tagline: "Capabilities",
+      headline: <>Fitur Utama <span className="text-[#1E90FF]">Chatbot Nanobot</span></>,
+      features: [
+        {
+          id: 'train',
+          icon: Upload,
+          title: 'Train on Your Data',
+          description: 'Upload PDF atau link website, AI langsung paham bisnis Anda.',
+          points: ['PDF & Web Link', 'Instant Understanding'],
+          color: 'bg-blue-500'
+        },
+        {
+          id: 'human',
+          icon: MessageCircle,
+          title: 'Human-Like Interaction',
+          description: 'Bahasa natural yang luwes seperti asisten manusia asli.',
+          points: ['Bahasa Natural', 'Respon Instan 24/7'],
+          color: 'bg-[#1E90FF]'
+        },
+        {
+          id: 'handoff',
+          icon: Phone,
+          title: 'Seamless Handoff',
+          description: 'Berikan notifikasi agar Anda bisa ambil alih kapan saja.',
+          points: ['Human Agent Handoff', 'Isu Kompleks'],
+          color: 'bg-orange-500'
+        },
+      ],
+      visual: {
+        chat1: "Halo! Ada bantuan?",
+        chat2: "Cek pesanan dong."
+      }
+    },
+    EN: {
+      tagline: "Capabilities",
+      headline: <>Key Features of <span className="text-[#1E90FF]">Nanobot Chatbot</span></>,
+      features: [
+        {
+          id: 'train',
+          icon: Upload,
+          title: 'Train on Your Data',
+          description: 'Upload PDF or website link, AI instantly understands your business.',
+          points: ['PDF & Web Link', 'Instant Understanding'],
+          color: 'bg-blue-500'
+        },
+        {
+          id: 'human',
+          icon: MessageCircle,
+          title: 'Human-Like Interaction',
+          description: 'Natural language that is fluid like a real human assistant.',
+          points: ['Natural Language', 'Instant Response 24/7'],
+          color: 'bg-[#1E90FF]'
+        },
+        {
+          id: 'handoff',
+          icon: Phone,
+          title: 'Seamless Handoff',
+          description: 'Get notified so you can take over anytime.',
+          points: ['Human Agent Handoff', 'Complex Issues'],
+          color: 'bg-orange-500'
+        },
+      ],
+      visual: {
+        chat1: "Hello! Need help?",
+        chat2: "Check my order please."
+      }
+    }
+  }
+
+  const content = t[lang]
+  const features = content.features
 
   const renderVisualContent = (index: number) => {
     switch (index) {
@@ -47,8 +96,8 @@ export default function FeaturesSection() {
       case 1:
         return (
           <div className="w-full max-w-[220px] space-y-2 scale-90">
-            <div className="bg-white/20 p-2 rounded-xl rounded-bl-none text-[10px] text-white/90 w-2/3 border border-white/10">Halo! Ada bantuan?</div>
-            <div className="bg-white p-2 rounded-xl rounded-br-none text-[10px] text-[#1E90FF] ml-auto w-2/3 text-right shadow-sm font-bold">Cek pesanan dong.</div>
+            <div className="bg-white/20 p-2 rounded-xl rounded-bl-none text-[10px] text-white/90 w-2/3 border border-white/10">{content.visual.chat1}</div>
+            <div className="bg-white p-2 rounded-xl rounded-br-none text-[10px] text-[#1E90FF] ml-auto w-2/3 text-right shadow-sm font-bold">{content.visual.chat2}</div>
           </div>
         )
       case 2:
@@ -69,9 +118,9 @@ export default function FeaturesSection() {
 
         {/* Compact Header */}
         <div className="text-center mb-20 mt-20 ">
-          <h2 className="text-[10px] font-black tracking-[0.2em] uppercase text-[#1E90FF] mb-2">Capabilities</h2>
+          <h2 className="text-[10px] font-black tracking-[0.2em] uppercase text-[#1E90FF] mb-2">{content.tagline}</h2>
           <h3 className="text-5xl lg:text-6xl font-black text-slate-900 tracking-tight">
-            Fitur Utama <span className="text-[#1E90FF]">Chatbot Nanobot</span>
+            {content.headline}
           </h3>
         </div>
 

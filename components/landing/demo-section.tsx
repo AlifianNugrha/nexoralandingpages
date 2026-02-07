@@ -5,17 +5,26 @@ import { motion, AnimatePresence } from "framer-motion"
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
+import { useLanguage } from './language-context'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP)
 }
 
-const CHAT_DATA = [
+const CHAT_DATA_ID = [
   { id: 1, type: 'bot', text: 'Halo! 👋 Ada yang bisa kami bantu?' },
   { id: 2, type: 'user', text: 'Berapa harga paket tahunan?' },
   { id: 3, type: 'bot', text: 'Kami punya paket hemat Rp 99rb/bulan! 😊' },
   { id: 4, type: 'user', text: 'Wah, boleh juga! Ada trial gratis?' },
   { id: 5, type: 'bot', text: 'Tentu! Ada trial 14 hari buat kamu. 🎉' }
+]
+
+const CHAT_DATA_EN = [
+  { id: 1, type: 'bot', text: 'Hello! 👋 How can we help you?' },
+  { id: 2, type: 'user', text: 'How much is the annual plan?' },
+  { id: 3, type: 'bot', text: 'We have a saving plan of $99/month! 😊' },
+  { id: 4, type: 'user', text: 'Wow, sounds good! Is there a free trial?' },
+  { id: 5, type: 'bot', text: 'Sure! There is a 14-day trial for you. 🎉' }
 ]
 
 export default function DemoSection() {
@@ -24,22 +33,52 @@ export default function DemoSection() {
   const cardRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLDivElement>(null)
 
-  const [messages, setMessages] = useState<typeof CHAT_DATA>([])
+  const { lang } = useLanguage()
+  const chatData = lang === 'ID' ? CHAT_DATA_ID : CHAT_DATA_EN
+
+  const [messages, setMessages] = useState<typeof CHAT_DATA_ID>([])
   const [index, setIndex] = useState(0)
+
+  // Reset chat when language changes
+  useEffect(() => {
+    setMessages([])
+    setIndex(0)
+  }, [lang])
+
+  const t = {
+    ID: {
+      headline: <>Effisiensi Ada <br /><span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] via-[#1E90FF] to-[#00BFFF]">Ditangan Anda</span></>,
+      subheadline: "Coba sendiri dan rasakan pengalaman chatbot AI yang berbeda dengan teknologi terbaru kami.",
+      cta: "Mulai Chat Sekarang",
+      botName: "Customer Support AI",
+      demoStatus: "Automated Demo",
+      typing: "AI sedang mengetik..."
+    },
+    EN: {
+      headline: <>Efficiency is <br /><span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] via-[#1E90FF] to-[#00BFFF]">In Your Hands</span></>,
+      subheadline: "Try it yourself and feel a different AI chatbot experience with our latest technology.",
+      cta: "Start Chat Now",
+      botName: "Customer Support AI",
+      demoStatus: "Automated Demo",
+      typing: "AI is typing..."
+    }
+  }
+
+  const content = t[lang]
 
   useEffect(() => {
     const interval = setInterval(() => {
       setMessages((prev) => {
-        if (index >= CHAT_DATA.length) {
+        if (index >= chatData.length) {
           setIndex(0)
           return []
         }
-        return [...prev, CHAT_DATA[index]]
+        return [...prev, chatData[index]]
       })
       setIndex((prev) => prev + 1)
     }, 2000)
     return () => clearInterval(interval)
-  }, [index])
+  }, [index, chatData])
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -124,21 +163,17 @@ export default function DemoSection() {
           <div className="flex flex-col items-start gap-8">
             <div ref={headerRef} className="space-y-4">
               <h2 className="text-5xl sm:text-7xl font-black leading-[1.1] tracking-tighter text-slate-900">
-                Effisiensi Ada <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] via-[#1E90FF] to-[#00BFFF]">
-                  Ditangan Anda
-                </span>
-
+                {content.headline}
               </h2>
               <p className="text-lg text-slate-600 max-w-md">
-                Coba sendiri dan rasakan pengalaman chatbot AI yang berbeda dengan teknologi terbaru kami.
+                {content.subheadline}
               </p>
             </div>
 
             <div ref={buttonRef} className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-[#1E90FF] to-[#00BFFF] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
               <button className="relative bg-[#1E90FF] hover:bg-[#00BFFF] text-white font-black uppercase tracking-widest text-xs px-10 py-5 rounded-xl transition-all shadow-2xl active:scale-95 flex items-center gap-2">
-                Mulai Chat Sekarang
+                {content.cta}
               </button>
             </div>
           </div>
@@ -150,10 +185,10 @@ export default function DemoSection() {
                 <div className="bg-[#1E90FF] text-white px-8 py-5 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold backdrop-blur-md">AI</div>
                   <div>
-                    <h3 className="font-bold text-sm">Customer Support AI</h3>
+                    <h3 className="font-bold text-sm">{content.botName}</h3>
                     <div className="flex items-center gap-1.5">
                       <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                      <p className="text-[10px] opacity-80 uppercase tracking-widest font-bold">Automated Demo</p>
+                      <p className="text-[10px] opacity-80 uppercase tracking-widest font-bold">{content.demoStatus}</p>
                     </div>
                   </div>
                 </div>
@@ -186,7 +221,7 @@ export default function DemoSection() {
                         <span className="w-1 h-1 bg-slate-300 rounded-full animate-bounce [animation-delay:0.2s]"></span>
                         <span className="w-1 h-1 bg-slate-300 rounded-full animate-bounce [animation-delay:0.4s]"></span>
                       </span>
-                      AI sedang mengetik...
+                      {content.typing}
                     </div>
                   </div>
                 </div>

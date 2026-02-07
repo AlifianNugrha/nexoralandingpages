@@ -4,9 +4,12 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Menu, X, Power } from 'lucide-react'
 
+import { useLanguage } from './language-context'
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
+  const { lang, toggleLang } = useLanguage()
 
   useEffect(() => {
     if (isOpen) {
@@ -16,11 +19,17 @@ export default function Navbar() {
     }
   }, [isOpen])
 
-  const navLinks = [
-    { name: 'Fitur', href: '#features' },
-    { name: 'Cara Kerja', href: '#how' },
-    { name: 'Harga', href: '#pricing' },
-  ]
+  const navLinks = lang === 'ID'
+    ? [
+      { name: 'Fitur', href: '#features' },
+      { name: 'Cara Kerja', href: '#how' },
+      { name: 'Harga', href: '#pricing' },
+    ]
+    : [
+      { name: 'Features', href: '#features' },
+      { name: 'How it Works', href: '#how' },
+      { name: 'Pricing', href: '#pricing' },
+    ]
 
   const pathD = "M 0,0 L 1,0 L 1,1 L 0.80,1 Q 0.77,1 0.75,0.9 L 0.68,0.2 L 0.32,0.2 L 0.25,0.9 Q 0.23,1 0.20,1 L 0,1 Z"
 
@@ -36,7 +45,7 @@ export default function Navbar() {
       </svg>
 
       {/* DESKTOP POWER BUTTON STAY */}
-      <div className="hidden md:flex fixed left-1/2 -translate-x-1/2 top-0 z-[160] items-center justify-center pointer-events-none" style={{ height: '80px' }}>
+      <div className="hidden md:flex fixed left-1/2 -translate-x-1/2 top-0 z-[160] items-center justify-center gap-4 pointer-events-none" style={{ height: '80px' }}>
         <button
           onClick={() => setIsVisible(!isVisible)}
           className={`pointer-events-auto flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-90 group relative
@@ -46,6 +55,20 @@ export default function Navbar() {
           {!isVisible && <div className="absolute inset-0 bg-[#1E90FF]/20 blur-xl rounded-full animate-pulse" />}
           <Power size={20} strokeWidth={2.5} className="relative z-10" />
           <div className={`absolute -bottom-2 w-1 h-1 rounded-full bg-[#1E90FF] transition-all duration-500 ${isVisible ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`} />
+        </button>
+
+        {/* LANGUAGE TOGGLE */}
+        <button
+          onClick={toggleLang}
+          className={`pointer-events-auto flex items-center justify-center transition-all duration-500 hover:scale-105 active:scale-95
+            ${isVisible ? 'translate-y-[15px] opacity-100' : 'translate-y-[-20px] opacity-0 pointer-events-none'}
+            font-bold text-[10px] gap-1 bg-white/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-200 text-slate-500 shadow-sm
+            hover:border-[#1E90FF] hover:text-[#1E90FF]
+          `}
+        >
+          <span className={lang === 'ID' ? 'text-[#1E90FF]' : 'opacity-50'}>ID</span>
+          <span className="opacity-30">/</span>
+          <span className={lang === 'EN' ? 'text-[#1E90FF]' : 'opacity-50'}>EN</span>
         </button>
       </div>
 
@@ -100,6 +123,15 @@ export default function Navbar() {
         {navLinks.map((link) => (
           <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-3xl font-extrabold text-slate-800 tracking-tighter">{link.name}</a>
         ))}
+        {/* Mobile Language Toggle */}
+        <button
+          onClick={toggleLang}
+          className="flex items-center gap-3 text-2xl font-bold bg-slate-100 px-6 py-3 rounded-full mt-4"
+        >
+          <span className={lang === 'ID' ? 'text-[#1E90FF]' : 'text-slate-400'}>ID</span>
+          <span className="text-slate-300">/</span>
+          <span className={lang === 'EN' ? 'text-[#1E90FF]' : 'text-slate-400'}>EN</span>
+        </button>
       </div>
     </>
   )

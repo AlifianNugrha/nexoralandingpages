@@ -8,40 +8,94 @@ import {
 } from '@/components/ui/accordion'
 import { motion } from 'framer-motion'
 import { MessageCircleQuestion, HelpCircle, ArrowRight } from 'lucide-react'
+import { useLanguage } from './language-context'
 
 export default function FAQSection() {
-  const faqs = [
-    {
-      question: 'Apakah data saya aman?',
-      answer:
-        'Ya, kami menggunakan enkripsi tingkat enterprise (AES-256) dan mematuhi standar keamanan internasional seperti ISO 27001. Semua data tersimpan di server yang aman dengan backup harian.',
+  const { lang } = useLanguage()
+
+  const t = {
+    ID: {
+      headline: <>Punya <span className="bg-gradient-to-r from-primary to-[#1E90FF] bg-clip-text text-transparent">Pertanyaan?</span></>,
+      subheadline: "Segala hal yang perlu Anda ketahui tentang layanan kami.",
+      didntFind: "Masih Belum Menemukan Jawaban?",
+      contactSupport: "Jangan ragu untuk menghubungi tim support kami yang siap membantu 24/7.",
+      contactBtn: "Hubungi Kami Sekarang",
+      faqs: [
+        {
+          question: 'Apakah data saya aman?',
+          answer:
+            'Ya, kami menggunakan enkripsi tingkat enterprise (AES-256) dan mematuhi standar keamanan internasional seperti ISO 27001. Semua data tersimpan di server yang aman dengan backup harian.',
+        },
+        {
+          question: 'Bisakah saya customize warnanya sesuai branding?',
+          answer:
+            'Tentu! Paket Pro dan Enterprise memungkinkan customization penuh warna, logo, dan tampilan chatbot sesuai brand identity Anda. Paket Starter memiliki customization dasar.',
+        },
+        {
+          question: 'Bagaimana jika AI salah menjawab?',
+          answer:
+            'AI kami terus belajar dari setiap interaksi. Anda bisa memperbaiki jawaban langsung di dashboard, dan sistem akan menggunakannya untuk pelatihan berikutnya. Untuk kasus kompleks, ada fitur seamless handoff ke tim support manusia.',
+        },
+        {
+          question: 'Berapa lama setup awal?',
+          answer:
+            'Hanya 2 menit! Upload PDF atau masukkan link website Anda, dan chatbot siap bekerja. Tidak perlu coding atau konfigurasi teknis yang rumit.',
+        },
+        {
+          question: 'Apakah ada free trial?',
+          answer:
+            'Ya, kami menawarkan trial gratis 14 hari penuh untuk semua paket. Tidak perlu kartu kredit untuk memulai. Anda bisa mencoba semua fitur tanpa batasan.',
+        },
+        {
+          question: 'Bagaimana dengan integrasi dengan sistem yang sudah ada?',
+          answer:
+            'Kami menyediakan API dan integrasi pre-built dengan lebih dari 50 platform populer seperti Shopify, WordPress, HubSpot, dan lainnya. Tim enterprise support kami siap membantu integrasi custom.',
+        },
+      ]
     },
-    {
-      question: 'Bisakah saya customize warnanya sesuai branding?',
-      answer:
-        'Tentu! Paket Pro dan Enterprise memungkinkan customization penuh warna, logo, dan tampilan chatbot sesuai brand identity Anda. Paket Starter memiliki customization dasar.',
-    },
-    {
-      question: 'Bagaimana jika AI salah menjawab?',
-      answer:
-        'AI kami terus belajar dari setiap interaksi. Anda bisa memperbaiki jawaban langsung di dashboard, dan sistem akan menggunakannya untuk pelatihan berikutnya. Untuk kasus kompleks, ada fitur seamless handoff ke tim support manusia.',
-    },
-    {
-      question: 'Berapa lama setup awal?',
-      answer:
-        'Hanya 2 menit! Upload PDF atau masukkan link website Anda, dan chatbot siap bekerja. Tidak perlu coding atau konfigurasi teknis yang rumit.',
-    },
-    {
-      question: 'Apakah ada free trial?',
-      answer:
-        'Ya, kami menawarkan trial gratis 14 hari penuh untuk semua paket. Tidak perlu kartu kredit untuk memulai. Anda bisa mencoba semua fitur tanpa batasan.',
-    },
-    {
-      question: 'Bagaimana dengan integrasi dengan sistem yang sudah ada?',
-      answer:
-        'Kami menyediakan API dan integrasi pre-built dengan lebih dari 50 platform populer seperti Shopify, WordPress, HubSpot, dan lainnya. Tim enterprise support kami siap membantu integrasi custom.',
-    },
-  ]
+    EN: {
+      headline: <>Have <span className="bg-gradient-to-r from-primary to-[#1E90FF] bg-clip-text text-transparent">Questions?</span></>,
+      subheadline: "Everything you need to know about our service.",
+      didntFind: "Still Didn't Find the Answer?",
+      contactSupport: "Do not hesitate to contact our support team who is ready to help 24/7.",
+      contactBtn: "Contact Us Now",
+      faqs: [
+        {
+          question: 'Is my data safe?',
+          answer:
+            'Yes, we use enterprise-grade encryption (AES-256) and comply with international security standards such as ISO 27001. All data is stored on secure servers with daily backups.',
+        },
+        {
+          question: 'Can I customize the colors to match my branding?',
+          answer:
+            'Sure! Pro and Enterprise plans allow full customization of colors, logos, and chatbot appearance to match your brand identity. The Starter plan has basic customization.',
+        },
+        {
+          question: 'What if the AI answers incorrectly?',
+          answer:
+            'Our AI continues to learn from every interaction. You can correct answers directly in the dashboard, and the system will use it for the next training. For complex cases, there is a seamless handoff feature to human support team.',
+        },
+        {
+          question: 'How long is the initial setup?',
+          answer:
+            'Only 2 minutes! Upload PDF or enter your website link, and the chatbot is ready to work. No coding or complex technical configuration needed.',
+        },
+        {
+          question: 'Is there a free trial?',
+          answer:
+            'Yes, we offer a full 14-day free trial for all plans. No credit card required to start. You can try all features without limits.',
+        },
+        {
+          question: 'What about integration with existing systems?',
+          answer:
+            'We provide APIs and pre-built integrations with over 50 popular platforms like Shopify, WordPress, HubSpot, and others. Our enterprise support team is ready to help with custom integration.',
+        },
+      ]
+    }
+  }
+
+  const content = t[lang]
+  const faqs = content.faqs
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background relative overflow-hidden">
@@ -64,10 +118,10 @@ export default function FAQSection() {
             Support Center
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tight">
-            Punya <span className="bg-gradient-to-r from-primary to-[#1E90FF] bg-clip-text text-transparent">Pertanyaan?</span>
+            {content.headline}
           </h2>
           <p className="text-muted-foreground font-medium">
-            Segala hal yang perlu Anda ketahui tentang layanan kami.
+            {content.subheadline}
           </p>
         </motion.div>
 
@@ -108,17 +162,17 @@ export default function FAQSection() {
           </div>
           <div className="space-y-2">
             <h3 className="text-xl font-black text-foreground">
-              Masih Belum Menemukan Jawaban?
+              {content.didntFind}
             </h3>
             <p className="text-sm text-muted-foreground max-w-xs mx-auto font-medium">
-              Jangan ragu untuk menghubungi tim support kami yang siap membantu 24/7.
+              {content.contactSupport}
             </p>
           </div>
           <a
             href="mailto:support@example.com"
             className="group flex items-center gap-2 bg-foreground text-background hover:bg-primary hover:text-primary-foreground font-bold px-8 py-3 rounded-full transition-all duration-300 shadow-xl"
           >
-            Hubungi Kami Sekarang
+            {content.contactBtn}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
         </motion.div>
