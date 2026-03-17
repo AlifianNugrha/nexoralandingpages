@@ -11,8 +11,8 @@ export default function FooterCTA() {
     ID: {
       headline: "Siap Mengotomatisasi Bisnis Anda?",
       subheadline: "Bergabunglah dengan ratusan bisnis yang sudah meningkatkan conversion rate mereka dengan AI Chatbot kami",
-      startTrial: "Mulai Free Trial",
-      contactSales: "Hubungi Sales",
+      startTrial: "Coba Sekarang",
+      contactSales: "Coba Sekarang",
       tagline: "Solusi chatbot AI terdepan untuk bisnis Indonesia",
       product: "Produk",
       company: "Perusahaan",
@@ -32,8 +32,8 @@ export default function FooterCTA() {
     EN: {
       headline: "Ready to Automate Your Business?",
       subheadline: "Join hundreds of businesses that have increased their conversion rates with our AI Chatbot",
-      startTrial: "Start Free Trial",
-      contactSales: "Contact Sales",
+      startTrial: "Try Now",
+      contactSales: "Try Now",
       tagline: "Leading AI chatbot solution for Indonesian businesses",
       product: "Product",
       company: "Company",
@@ -67,17 +67,23 @@ export default function FooterCTA() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
+              asChild
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
-              {content.startTrial}
+              <a href="http://103.226.138.16/login">
+                {content.startTrial}
+              </a>
             </Button>
             <Button
+              asChild
               size="lg"
               variant="outline"
               className="border-primary-foreground text-white hover:bg-white/20 bg-transparent"
             >
-              {content.contactSales}
+              <a href="http://103.226.138.16/login">
+                {content.contactSales}
+              </a>
             </Button>
           </div>
         </div>

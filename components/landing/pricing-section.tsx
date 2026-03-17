@@ -81,22 +81,25 @@ const PricingCard = ({
 
       <div className="relative z-10 overflow-hidden rounded-xl">
         <Button
+          asChild
           className={`w-full h-11 text-sm font-bold transition-all duration-500 relative overflow-hidden group/btn ${highlighted
             ? 'bg-[#1E90FF] text-white shadow-[0_10px_20px_rgba(30,144,255,0.3)] hover:scale-[1.02] hover:bg-[#00BFFF]'
             : 'bg-[#1E90FF]/10 text-[#1E90FF] hover:bg-[#1E90FF] hover:text-white'
             }`}
         >
-          {highlighted && (
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: '100%' }}
-              transition={{ repeat: Infinity, duration: 2.5, ease: 'linear' }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-            />
-          )}
-          <span className="relative z-10">
-            {isCustom ? t.consultNow : t.startNow}
-          </span>
+          <a href="http://103.226.138.16/login">
+            {highlighted && (
+              <motion.div
+                initial={{ x: '-100%' }}
+                animate={{ x: '100%' }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: 'linear' }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+              />
+            )}
+            <span className="relative z-10">
+              {isCustom ? t.consultNow : t.startNow}
+            </span>
+          </a>
         </Button>
       </div>
 
@@ -129,8 +132,8 @@ export default function PricingSection() {
       month: "bln",
       customEstimate: "Estimasi harga sesuai kebutuhan",
       autoRenew: "Auto-renew setiap bulan",
-      consultNow: "Konsultasi Sekarang",
-      startNow: "Mulai Sekarang",
+      consultNow: "Coba Sekarang",
+      startNow: "Coba Sekarang",
       plans: [
         {
           name: 'UMKM',
@@ -165,8 +168,8 @@ export default function PricingSection() {
       month: "mo",
       customEstimate: "Price estimation based on needs",
       autoRenew: "Auto-renew every month",
-      consultNow: "Consult Now",
-      startNow: "Start Now",
+      consultNow: "Coba Sekarang",
+      startNow: "Coba Sekarang",
       plans: [
         {
           name: 'SME',

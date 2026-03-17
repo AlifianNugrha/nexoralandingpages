@@ -74,8 +74,8 @@ export default function Hero() {
     ID: {
       headline: <>Ubah Pengunjung Jadi <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#1E90FF]/60">Pembeli.</span></>,
       subheadline: "Chatbot cerdas yang memahami bisnismu. Tingkatkan konversi secara otomatis tanpa harus berjaga di depan layar.",
-      ctaPrimary: "Buat Chatbot Sekarang",
-      ctaSecondary: "Lihat Demo",
+      ctaPrimary: "Coba Sekarang",
+      ctaSecondary: "Coba Sekarang",
       users: "Pengguna",
       trusted: "1,200+ Terpercaya",
       growth: "Pertumbuhan",
@@ -91,8 +91,8 @@ export default function Hero() {
     EN: {
       headline: <>Turn Visitors Into <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#1E90FF]/60">Buyers.</span></>,
       subheadline: "Intelligent chatbot that understands your business. Automatically increase conversions without guarding the screen.",
-      ctaPrimary: "Create Chatbot Now",
-      ctaSecondary: "View Demo",
+      ctaPrimary: "Try Now",
+      ctaSecondary: "Try Now",
       users: "Users",
       trusted: "1,200+ Trusted",
       growth: "Growth",
@@ -142,19 +142,25 @@ export default function Hero() {
 
             <div className="animate-item flex flex-col sm:flex-row gap-5 pt-2">
               <Button
+                asChild
                 size="lg"
                 className="rounded-full px-10 h-14 text-base font-bold shadow-xl shadow-[#1E90FF]/25 bg-[#1E90FF] hover:bg-[#00BFFF] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] group text-white"
               >
-                {content.ctaPrimary}
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                <a href="http://103.226.138.16/login">
+                  Coba Sekarang
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </a>
               </Button>
 
               <Button
+                asChild
                 size="lg"
                 variant="ghost"
                 className="rounded-full px-10 h-14 text-base font-semibold border-2 border-[#1E90FF]/10 hover:border-[#1E90FF]/20 hover:bg-[#1E90FF]/5 transition-all duration-300"
               >
-                {content.ctaSecondary}
+                <a href="http://103.226.138.16/login">
+                  {content.ctaSecondary}
+                </a>
               </Button>
             </div>
           </div>

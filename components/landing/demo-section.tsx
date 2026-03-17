@@ -49,7 +49,7 @@ export default function DemoSection() {
     ID: {
       headline: <>Effisiensi Ada <br /><span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] via-[#1E90FF] to-[#00BFFF]">Ditangan Anda</span></>,
       subheadline: "Coba sendiri dan rasakan pengalaman chatbot AI yang berbeda dengan teknologi terbaru kami.",
-      cta: "Mulai Chat Sekarang",
+      cta: "Coba Sekarang",
       botName: "Customer Support AI",
       demoStatus: "Automated Demo",
       typing: "AI sedang mengetik..."
@@ -57,7 +57,7 @@ export default function DemoSection() {
     EN: {
       headline: <>Efficiency is <br /><span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] via-[#1E90FF] to-[#00BFFF]">In Your Hands</span></>,
       subheadline: "Try it yourself and feel a different AI chatbot experience with our latest technology.",
-      cta: "Start Chat Now",
+      cta: "Try Now",
       botName: "Customer Support AI",
       demoStatus: "Automated Demo",
       typing: "AI is typing..."
@@ -172,9 +172,9 @@ export default function DemoSection() {
 
             <div ref={buttonRef} className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-[#1E90FF] to-[#00BFFF] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-              <button className="relative bg-[#1E90FF] hover:bg-[#00BFFF] text-white font-black uppercase tracking-widest text-xs px-10 py-5 rounded-xl transition-all shadow-2xl active:scale-95 flex items-center gap-2">
+              <a href="http://103.226.138.16/login" className="relative bg-[#1E90FF] hover:bg-[#00BFFF] text-white font-black uppercase tracking-widest text-xs px-10 py-5 rounded-xl transition-all shadow-2xl active:scale-95 flex items-center gap-2">
                 {content.cta}
-              </button>
+              </a>
             </div>
           </div>
 
