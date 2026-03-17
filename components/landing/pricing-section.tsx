@@ -87,7 +87,7 @@ const PricingCard = ({
             : 'bg-[#1E90FF]/10 text-[#1E90FF] hover:bg-[#1E90FF] hover:text-white'
             }`}
         >
-          <a href="https://nanoartif.my.id/login">
+          <a href="https://platformby.nanoartif.my.id/login">
             {highlighted && (
               <motion.div
                 initial={{ x: '-100%' }}

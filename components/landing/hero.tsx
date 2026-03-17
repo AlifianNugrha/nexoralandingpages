@@ -146,7 +146,7 @@ export default function Hero() {
                 size="lg"
                 className="rounded-full px-10 h-14 text-base font-bold shadow-xl shadow-[#1E90FF]/25 bg-[#1E90FF] hover:bg-[#00BFFF] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] group text-white"
               >
-                <a href="https://nanoartif.my.id/login">
+                <a href="https://platformby.nanoartif.my.id/login">
                   {content.ctaPrimary}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </a>
@@ -158,7 +158,7 @@ export default function Hero() {
                 variant="ghost"
                 className="rounded-full px-10 h-14 text-base font-semibold border-2 border-[#1E90FF]/10 hover:border-[#1E90FF]/20 hover:bg-[#1E90FF]/5 transition-all duration-300"
               >
-                <a href="https://nanoartif.my.id/login">
+                <a href="https://platformby.nanoartif.my.id/login">
                   {content.ctaSecondary}
                 </a>
               </Button>

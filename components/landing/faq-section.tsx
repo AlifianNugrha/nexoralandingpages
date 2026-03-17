@@ -169,7 +169,7 @@ export default function FAQSection() {
             </p>
           </div>
           <a
-            href="https://nanoartif.my.id/login"
+            href="https://platformby.nanoartif.my.id/login"
             className="group flex items-center gap-2 bg-foreground text-background hover:bg-primary hover:text-primary-foreground font-bold px-8 py-3 rounded-full transition-all duration-300 shadow-xl"
           >
             {content.contactBtn}

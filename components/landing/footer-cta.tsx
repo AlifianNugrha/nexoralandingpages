@@ -71,7 +71,7 @@ export default function FooterCTA() {
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
-              <a href="https://nanoartif.my.id/login">
+              <a href="https://platformby.nanoartif.my.id/login">
                 {content.startTrial}
               </a>
             </Button>
@@ -81,7 +81,7 @@ export default function FooterCTA() {
               variant="outline"
               className="border-primary-foreground text-white hover:bg-white/20 bg-transparent"
             >
-              <a href="https://nanoartif.my.id/login">
+              <a href="https://platformby.nanoartif.my.id/login">
                 {content.contactSales}
               </a>
             </Button>

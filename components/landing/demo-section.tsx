@@ -172,7 +172,7 @@ export default function DemoSection() {
 
             <div ref={buttonRef} className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-[#1E90FF] to-[#00BFFF] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-              <a href="https://nanoartif.my.id/login" className="relative bg-[#1E90FF] hover:bg-[#00BFFF] text-white font-black uppercase tracking-widest text-xs px-10 py-5 rounded-xl transition-all shadow-2xl active:scale-95 flex items-center gap-2">
+              <a href="https://platformby.nanoartif.my.id/login" className="relative bg-[#1E90FF] hover:bg-[#00BFFF] text-white font-black uppercase tracking-widest text-xs px-10 py-5 rounded-xl transition-all shadow-2xl active:scale-95 flex items-center gap-2">
                 {content.cta}
               </a>
             </div>
