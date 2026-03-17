@@ -11,8 +11,8 @@ export default function FooterCTA() {
     ID: {
       headline: "Siap Mengotomatisasi Bisnis Anda?",
       subheadline: "Bergabunglah dengan ratusan bisnis yang sudah meningkatkan conversion rate mereka dengan AI Chatbot kami",
-      startTrial: "Coba Sekarang",
-      contactSales: "Coba Sekarang",
+      startTrial: "Mulai Gratis",
+      contactSales: "Hubungi Sales",
       tagline: "Solusi chatbot AI terdepan untuk bisnis Indonesia",
       product: "Produk",
       company: "Perusahaan",
@@ -32,8 +32,8 @@ export default function FooterCTA() {
     EN: {
       headline: "Ready to Automate Your Business?",
       subheadline: "Join hundreds of businesses that have increased their conversion rates with our AI Chatbot",
-      startTrial: "Try Now",
-      contactSales: "Try Now",
+      startTrial: "Start Free Trial",
+      contactSales: "Contact Sales",
       tagline: "Leading AI chatbot solution for Indonesian businesses",
       product: "Product",
       company: "Company",
@@ -71,7 +71,7 @@ export default function FooterCTA() {
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
-              <a href="http://103.226.138.16/login">
+              <a href="https://nanoartif.my.id/login">
                 {content.startTrial}
               </a>
             </Button>
@@ -81,7 +81,7 @@ export default function FooterCTA() {
               variant="outline"
               className="border-primary-foreground text-white hover:bg-white/20 bg-transparent"
             >
-              <a href="http://103.226.138.16/login">
+              <a href="https://nanoartif.my.id/login">
                 {content.contactSales}
               </a>
             </Button>

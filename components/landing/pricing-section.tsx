@@ -87,7 +87,7 @@ const PricingCard = ({
             : 'bg-[#1E90FF]/10 text-[#1E90FF] hover:bg-[#1E90FF] hover:text-white'
             }`}
         >
-          <a href="http://103.226.138.16/login">
+          <a href="https://nanoartif.my.id/login">
             {highlighted && (
               <motion.div
                 initial={{ x: '-100%' }}
@@ -132,8 +132,8 @@ export default function PricingSection() {
       month: "bln",
       customEstimate: "Estimasi harga sesuai kebutuhan",
       autoRenew: "Auto-renew setiap bulan",
-      consultNow: "Coba Sekarang",
-      startNow: "Coba Sekarang",
+      consultNow: "Hubungi Kami",
+      startNow: "Mulai Sekarang",
       plans: [
         {
           name: 'UMKM',
@@ -168,8 +168,8 @@ export default function PricingSection() {
       month: "mo",
       customEstimate: "Price estimation based on needs",
       autoRenew: "Auto-renew every month",
-      consultNow: "Coba Sekarang",
-      startNow: "Coba Sekarang",
+      consultNow: "Contact Us",
+      startNow: "Get Started",
       plans: [
         {
           name: 'SME',

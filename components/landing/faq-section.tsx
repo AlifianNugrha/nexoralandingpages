@@ -19,7 +19,7 @@ export default function FAQSection() {
       subheadline: "Segala hal yang perlu Anda ketahui tentang layanan kami.",
       didntFind: "Masih Belum Menemukan Jawaban?",
       contactSupport: "Jangan ragu untuk menghubungi tim support kami yang siap membantu 24/7.",
-      contactBtn: "Coba Sekarang",
+      contactBtn: "Hubungi Bantuan",
       faqs: [
         {
           question: 'Apakah data saya aman?',
@@ -58,7 +58,7 @@ export default function FAQSection() {
       subheadline: "Everything you need to know about our service.",
       didntFind: "Still Didn't Find the Answer?",
       contactSupport: "Do not hesitate to contact our support team who is ready to help 24/7.",
-      contactBtn: "Try Now",
+      contactBtn: "Contact Support",
       faqs: [
         {
           question: 'Is my data safe?',
@@ -169,7 +169,7 @@ export default function FAQSection() {
             </p>
           </div>
           <a
-            href="http://103.226.138.16/login"
+            href="https://nanoartif.my.id/login"
             className="group flex items-center gap-2 bg-foreground text-background hover:bg-primary hover:text-primary-foreground font-bold px-8 py-3 rounded-full transition-all duration-300 shadow-xl"
           >
             {content.contactBtn}
